@@ -7,25 +7,25 @@ document.addEventListener("DOMContentLoaded", function () {
     // create XMLHttpRequest object to send AJAX request
     const xhr = new XMLHttpRequest();
 
+    // get the value from the search field
+    const searchValue = document.querySelector(".search-field").value;
+
     // when a response is received from the server
     xhr.onload = function () {
-      if (xhr.status === 200) {
-        // show server response in alert message
-        alert(this.responseText);
-      } else {
-        // handle error
-        console.error("Error fetching data. Status:", xhr.status);
-        alert("Error fetching data. Please try again.");
-      }
+      // get the result div
+      const resultDiv = document.getElementById("result");
+
+      // set the HTML content of the result div with the received response
+      resultDiv.innerHTML = xhr.responseText;
     };
 
     // create a POST request to superheroes.php script
     xhr.open("POST", "superheroes.php", true);
 
-    // set Content-Type header for POST request
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // set the content type header for POST requests
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    // send AJAX request to the server
-    xhr.send();
+    // send AJAX request to the server with the search query as a parameter
+    xhr.send("avenger=" + encodeURIComponent(searchValue));
   });
 });

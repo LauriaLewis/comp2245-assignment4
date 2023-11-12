@@ -63,10 +63,30 @@ $superheroes = [
   ], 
 ];
 
-?>
+echo "<h3>RESULTS</h3>";
+echo "<hr>";
+$avenger_name = filter_var(trim($_POST["avenger"]), FILTER_SANITIZE_STRING);
+if ($avenger_name === "") {
+    echo "<ul>";
+    foreach ($superheroes as $superhero) {
+        echo "<li>" . $superhero['alias'] . "</li>";
+    }
+    echo "</ul>";
+} else {
+    $result = false;
+    foreach ($superheroes as $superhero) {
+        if (($avenger_name === $superhero['alias']) || ($avenger_name == $superhero['name'])) {
+            echo "<h3>" . $superhero['alias'] . "</h3>";
+            echo "<h4>A.K.A " . $superhero['name'] . "</h4>";
+            echo "<p>" . $superhero['biography'] . "</p>";
+            $result = true;
+            break;
+        }
+    }
+    if (!$result) {
+        echo "<h3 class='not-found'>SUPERHERO NOT FOUND</h3>";
+    }
+}
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+
+?>

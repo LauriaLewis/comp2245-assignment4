@@ -1,0 +1,42 @@
+* {
+  padding: 0%;
+}
+
+body {
+  background-color: seashell;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  background-color: #168abb;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.search-results {
+  width: 70%;
+}
+.search-results > input {
+  width: 80%;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border-width: 0;
+  margin-bottom: 20px;
+  border: solid black 1px;
+}
+
+.search-results > button {
+  width: 100px;
+  padding: 5px;
+  background-color: red;
+  color: seashell;
+  border-radius: 5px;
+  border-width: 0;
+}
+.not-found {
+  color: red;
+}
